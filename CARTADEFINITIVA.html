@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz San Valentín 💖</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: pink;
+            font-family: Arial, sans-serif;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+        .corazon {
+            position: absolute;
+            color: red;
+            font-size: 24px;
+            animation: flotar 4s ease-in-out;
+        }
+        @keyframes flotar {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            50% { transform: translateY(-100px) scale(1.2); opacity: 0.7; }
+            100% { transform: translateY(-200px) scale(1); opacity: 0; }
+        }
+        .carta-container {
+            position: relative;
+            width: 400px;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .carta-cerrada {
+            width: 100%;
+            height: 100%;
+            background-image: url('https://cdn.pixabay.com/photo/2017/02/07/13/06/valentine-2047270_960_720.png');
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            transition: transform 0.5s;
+        }
+        .carta-abierta {
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            padding: 30px;
+            position: absolute;
+            transform: scale(0);
+            transition: transform 0.5s;
+            font-size: 24px;
+        }
+        .boton {
+            padding: 10px 20px;
+            background: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .musica {
+            margin-top: 50px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function generarCorazones() {
+            for (let i = 0; i < 10; i++) {
+                let corazon = document.createElement("div");
+                corazon.classList.add("corazon");
+                corazon.innerHTML = "❤️";
+                corazon.style.left = Math.random() * 100 + "vw";
+                corazon.style.top = Math.random() * 100 + "vh";
+                corazon.style.animationDuration = Math.random() * 2 + 3 + "s";
+                document.body.appendChild(corazon);
+                setTimeout(() => corazon.remove(), 4000);
+            }
+        }
+        function abrirCarta() {
+            document.getElementById("cartaCerrada").style.transform = "scale(0)";
+            setTimeout(() => {
+                document.getElementById("cartaAbierta").style.transform = "scale(1)";
+                generarCorazones();
+                document.getElementById("musica").style.display = "block";
+            }, 500);
+        }
+        setInterval(generarCorazones, 2000);
+    </script>
+    <div class="carta-container">
+        <div class="carta-cerrada" id="cartaCerrada" onclick="abrirCarta()">
+            <button class="boton">Abrir Carta 💌</button>
+        </div>
+        <div class="carta-abierta" id="cartaAbierta">
+            <h2>💖 Para ilan 💖</h2>
+            <p>Hola mi niña, como estás? espero que bien preciosa, niña queria preguntarte algo, te gustaría ser mi San valentín este 14 de febrero? jsksks te amo muchisimo cami 💕</p>
+        </div>
+    </div>
+    <div class="musica" id="musica">
+        <a href="https://youtu.be/8cKvvmPwgP4?si=OIXHExsiqkdU2Uby" target="_blank">
+            <button class="boton">Escuchar nuestra canción 💕</button>
+        </a>
+    </div>
+</body>
+</html>
