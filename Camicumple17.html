@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para Camilita de Martin</title>
+  <style>
+    body {
+      margin: 0;
+      padding-top: 40px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to top right, #fce4ec, #f8bbd0);
+      color: #4a148c;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      text-align: center;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 3.2rem;
+      margin-bottom: 5px;
+      margin-top: -20px;
+    }
+
+    p {
+      font-size: 1.4rem;
+      max-width: 700px;
+      margin: 0 20px 20px 20px;
+      line-height: 1.8;
+    }
+
+    button {
+      font-size: 1.1rem;
+      padding: 10px 20px;
+      background-color: #f06292;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .popup, .response {
+      margin-top: 20px;
+      background-color: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      max-width: 80%;
+      z-index: 2;
+      display: none;
+    }
+
+    .popup button {
+      margin: 10px;
+    }
+
+    .response {
+      display: none;
+    }
+
+    .respuestaNoFull {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 40px;
+      font-size: 1.8rem;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      z-index: 999;
+      display: none;
+    }
+
+    .hearts {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      transform: rotate(45deg);
+      animation: float 12s infinite ease-in;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Para Camilita de Martin</h1>
+  <p>
+    A veces las palabras no alcanzan, pero igual quería dejarte este pequeño regalito digital para ti. Es un recordatorio
+    de cuánto te valoro, de todas las sonrisas que me has regalado y de los momentos que aún guardo con mucho cariño.
+    Aunque la distancia a veces se cruce en el camino, hay cosas que no cambian tan fácil, como el cariño y amor que siento por ti.
+
+    Espero que hoy, en tu día, sonrías mucho y te rodees de cosas que te hagan feliz. Que recuerdes lo especial que eres
+    y que hay un niño por aquí que siempre te desea lo mejor. Te quiero mucho, y siempre guardaré en mi corazón todo lo bonito
+    que compartimos y compartiremos con el paso del tiempo. Ojalá este regalito sea un detalle que te haga sentir acompañada,
+    incluso si no estamos tan cerca como antes, feliz cumpleaños niña <3.
+  </p>
+
+  <button onclick="mostrarPopup()">¡Apretame!</button>
+
+  <div class="popup" id="popup">
+    <p>Eres la única niña que amo y amaré en este fuckin mundo, ¿me amas?</p>
+    <button onclick="respuesta('sipi')">sipi</button>
+    <button onclick="respuesta('no')">no gay</button>
+  </div>
+
+  <div class="response" id="respuestaSipi">
+    <p>Te daré una Kick cuando vuelvas 🍫 Feliz cumple</p>
+  </div>
+
+  <div class="respuestaNoFull" id="respuestaNo">
+    <p>¿Estás segura de esta elección? ¿No lo habrás elegido solo porque decía gay? <br><br> (¿o no me amas?)</p>
+  </div>
+
+  <div class="hearts"></div>
+
+  <script>
+    for (let i = 0; i < 30; i++) {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 7 + 6) + 's';
+      heart.style.opacity = Math.random();
+      document.querySelector('.hearts').appendChild(heart);
+    }
+
+    function mostrarPopup() {
+      document.getElementById('popup').style.display = 'block';
+      document.getElementById('respuestaSipi').style.display = 'none';
+      document.getElementById('respuestaNo').style.display = 'none';
+    }
+
+    function respuesta(opcion) {
+      if (opcion === 'sipi') {
+        document.getElementById('respuestaSipi').style.display = 'block';
+        document.getElementById('respuestaNo').style.display = 'none';
+        document.getElementById('popup').style.display = 'none';
+      } else {
+        document.getElementById('respuestaNo').style.display = 'block';
+        document.getElementById('respuestaSipi').style.display = 'none';
+        document.getElementById('popup').style.display = 'none';
+        setTimeout(() => {
+          document.getElementById('respuestaNo').style.display = 'none';
+          document.getElementById('popup').style.display = 'block';
+        }, 5000);
+      }
+    }
+  </script>
+</body>
+</html>
